@@ -12,6 +12,7 @@ const session      = require("express-session")
 const passport     =require("passport")
 const cors         =require("cors")
 
+
 //Include passport configuration
 require("./configs/passport")
 
@@ -34,6 +35,22 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.set("trust proxy", 1);
+
+//Session set up
+app.use(session ({
+  secret: process.env.SESSION_SECRET,
+  saveUninitialized: true,
+  resave: false,
+  cookie: {
+    sameSite: 'none', //true, //client on same domain as the server (local host)
+    secure: true, //false, //cause we are not using https
+    httpOnly: false, //true, //only using http not https
+    maxAge: 60000 //expirtion time = 6 mins
+  },
+  rolling: true //session get refreshed with interaction 
+}))
 
 // Express View engine setup
 

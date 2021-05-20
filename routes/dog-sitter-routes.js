@@ -7,6 +7,7 @@ const fileUpload = require("../configs/cloudinary")
 //Create profile => become a sitter page
 router.post("/create-profile", async (req,res) => {
   const {
+    email,
     name,
     dogAge,
     pottyTrained,
@@ -24,6 +25,7 @@ router.post("/create-profile", async (req,res) => {
 
   try {
       const response = await DogSitter.create ({
+        email,
         name,
         dogAge,
       pottyTrained,

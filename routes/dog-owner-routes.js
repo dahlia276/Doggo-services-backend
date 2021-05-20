@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router()
 const DogOwner = require("../models/dog-owner-model");
 const DogSitter = require("../models/dog-sitter-model");
-
+const bcrypt = require ("bcryptjs")
 const fileUpload = require("../configs/cloudinary")
-
+const nodemailer = require("nodemailer")
 
 
 //Get/view all sitters => available sitters page
@@ -51,6 +51,27 @@ router.post("/sitter-request", async (req,res) => {
       res.status(500).json(`error occured ${e}`)
   }
 
+});
+
+//Send email to request booking
+router.post("/request-booking", async (req,res) => {
+  const {email, requestText} = req.body;
+  let transporter = nodemailer.createTransport({
+      service: "Gmail",
+      auth: {
+        user: "doggo.paws.services",
+        pass: "One234567",
+      },
+    });
+    const response = await transporter.sendMail({
+      from: "doggo.paws.services@gmail.com",
+      to: email,
+      subject: 'Booking Request', 
+      text: 'yada yada',
+      html: `<b>${requestText}</b>`
+    })
+
+    res.status(200).json(response)
 });
 
 
