@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router()
 const DogOwner = require("../models/dog-owner-model");
+const DogSitter = require("../models/dog-sitter-model");
+
 const fileUpload = require("../configs/cloudinary")
 
 
@@ -20,30 +22,28 @@ router.get("/sitters", async (req,res) => {
 //Create dog sitting request
 router.post("/sitter-request", async (req,res) => {
   const {
-    service,
+    services,
     address,
     pickUp,
     dropOff,
     dogSize,
     dogAge,
     otherDogs,
-    imageUrl,
     specialComments} = req.body;
-  if (!service || !address || !pickUp || !dropOff || !dogSize || !dogAge || !otherDogs || !imageUrl || !specialComments) {
+  if (!services || !address || !pickUp || !dropOff) {
       res.status(400).json("missing feilds");
       return;
   }
 
   try {
       const response = await DogOwner.create ({
-        service,
+        services,
         address,
         pickUp,
         dropOff,
         dogSize,
         dogAge,
         otherDogs,
-        imageUrl,
         specialComments
       });
       res.status(200).json(response);

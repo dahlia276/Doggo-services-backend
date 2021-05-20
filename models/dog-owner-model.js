@@ -6,10 +6,9 @@ const dogOwnerSchema = new Schema ({
     address: String,
     pickUp: Number,
     dropOff: Number,
-    dogSize: [String],
-    dogAge: [String],
-    otherDogs: [String],
-    imageUrl: String,
+    dogSize: String,
+    dogAge: String,
+    otherDogs: String,
     specialComments: String
 });
 

@@ -2,13 +2,17 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const dogSitterSchema = new Schema ({
-    service: [String],
+    name: String,
+    dogAge: String,
+    pottyTrained: Boolean,
+    rate: Number,
+    services: [],
+    size: [],
+    imageUrl: String,
     space: String,
     about: String,
-    dogSize: [String],
-    dogAge: [String],
-    pottyTrained: [String],
-    imageUrl: String
+    area: String
+
 });
 
 const DogSitter = mongoose.model('DogSitter', dogSitterSchema)

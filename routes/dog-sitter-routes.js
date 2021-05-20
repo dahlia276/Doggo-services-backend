@@ -7,27 +7,33 @@ const fileUpload = require("../configs/cloudinary")
 //Create profile => become a sitter page
 router.post("/create-profile", async (req,res) => {
   const {
-    service,
-    space,
-    about,
-    dogSize,
+    name,
     dogAge,
     pottyTrained,
-    imageUrl} = req.body;
-  if (!service || !space || !about || !dogSize || !dogAge || !pottyTrained || !imageUrl) {
+    rate,
+    services,
+    size,
+    imageUrl,
+    space,
+    about,
+    area} = req.body;
+/*   if (!pottyTrained || !rate || !size || !imageUrl) {
       res.status(400).json("missing feilds");
       return;
-  }
+  } */
 
   try {
       const response = await DogSitter.create ({
-        service,
-        space,
-        about,
-        dogSize,
+        name,
         dogAge,
-        pottyTrained,
-        imageUrl
+      pottyTrained,
+    rate,
+    services,
+    size,
+    imageUrl,
+    space,
+    about,
+    area
       });
       res.status(200).json(response);
   } catch(e) {

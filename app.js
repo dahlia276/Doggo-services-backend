@@ -16,7 +16,7 @@ const cors         =require("cors")
 require("./configs/passport")
 
 mongoose
-  .connect('mongodb://localhost/dog-services', {useNewUrlParser: true})
+  .connect(process.env.MONGODB_URI, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
