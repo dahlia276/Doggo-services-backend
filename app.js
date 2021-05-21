@@ -44,9 +44,9 @@ app.use(session ({
   saveUninitialized: true,
   resave: false,
   cookie: {
-    sameSite: 'none', //true, //client on same domain as the server (local host)
-    secure: true, //false, //cause we are not using https
-    httpOnly: false, //true, //only using http not https
+    sameSite: 'none', //client on same domain as the server (local host)
+    secure: true, //cause we are not using https
+    httpOnly: false, //only using http not https
     maxAge: 60000 //expirtion time = 6 mins
   },
   rolling: true //session get refreshed with interaction 

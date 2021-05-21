@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 const dogOwnerSchema = new Schema ({
     service: [String],
     address: String,
-    pickUp: Number,
-    dropOff: Number,
+    pickUp: Date,
+    dropOff: Date,
     dogSize: String,
     dogAge: String,
     otherDogs: String,
